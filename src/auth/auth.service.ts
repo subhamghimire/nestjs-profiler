@@ -25,7 +25,7 @@ export class AuthService {
   }
 
   async login(user) {
-    const payload = { username: user.username, sub: user.userId };
+    const payload = { username: user._doc.username, sub: user.userId };
 
     return {
       access_token: this.jwtTokenService.sign(payload, {
@@ -44,7 +44,6 @@ export class AuthService {
       secret: jwtConstants.secret,
     });
 
-    const user = await this.usersService.findOne(decodedUser.username);
-    return user;
+    return await this.usersService.findOne(decodedUser.username);
   }
 }
