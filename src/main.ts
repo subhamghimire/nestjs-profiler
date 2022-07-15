@@ -9,6 +9,13 @@ async function bootstrap() {
       whitelist: true,
     }),
   );
-  await app.listen(3000);
+
+  const PORT = process.env.PORT || 3002;
+
+  app.setGlobalPrefix('api');
+
+  await app.listen(PORT, () => {
+    console.log(`Server is up at ${PORT}`);
+  });
 }
 bootstrap();
