@@ -17,13 +17,7 @@ export class AuthService {
   async validateUser(username: string, password: string): Promise<any> {
     const user = await this.usersService.findOne(username);
     if (!user) {
-      throw new HttpException(
-        {
-          success: false,
-          message: 'Not Found',
-        },
-        HttpStatus.NOT_FOUND,
-      );
+      return null;
     }
     const isPasswordMatched = await user.verifyPassword(password);
     if (isPasswordMatched) {
