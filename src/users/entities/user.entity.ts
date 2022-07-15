@@ -1,6 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
 import * as bcrypt from 'bcrypt';
+import { Role } from '../../common/enums/role.enum';
 @Schema({ timestamps: true })
 export class User extends Document {
   @Prop()
@@ -19,6 +20,8 @@ export class User extends Document {
   username: string;
 
   verifyPassword: Function;
+
+  role: string[];
 }
 
 const UserSchema = SchemaFactory.createForClass(User);

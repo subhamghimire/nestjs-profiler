@@ -4,6 +4,8 @@ import { AuthService } from 'src/auth/auth.service';
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
 import { LocalAuthGuard } from './auth/guards/local-auth.guard';
 import { Public } from './common/decorators/public.decorator';
+import { Roles } from './common/decorators/roles.decorator';
+import { Role } from './common/enums/role.enum';
 import { CreateUserDto } from './users/dto/create-user.dto';
 
 @Controller()
@@ -24,6 +26,7 @@ export class AppController {
   }
 
   // @UseGuards(JwtAuthGuard)
+  @Roles(Role.Admin)
   @Get('profile')
   getProfile(@Req() req: Request) {
     return this.authService.getUserProfile(req);
