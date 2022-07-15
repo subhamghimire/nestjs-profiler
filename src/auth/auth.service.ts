@@ -42,11 +42,15 @@ export class AuthService {
   }
 
   async getUserProfile(req: Request): Promise<User> {
+    const decodedUser = await this.verifiedUser(req);
+    return await this.usersService.findOne(decodedUser.username);
+  }
+
+  async verifiedUser(req: Request): Promise<User> {
     const token = (<string>req.headers['authorization']).replace('Bearer ', '');
-    const decodedUser = this.jwtTokenService.verify(token, {
+    const decodedUser = await this.jwtTokenService.verify(token, {
       secret: jwtConstants.secret,
     });
-
-    return await this.usersService.findOne(decodedUser.username);
+    return decodedUser;
   }
 }
