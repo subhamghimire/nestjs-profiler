@@ -17,7 +17,7 @@ import { diskStorage } from 'multer';
 import { v4 as uuidv4 } from 'uuid';
 import path = require('path');
 import { Observable, of } from 'rxjs';
-import { Request } from 'express';
+import { Request, Response } from 'express';
 
 export const storage = {
   storage: diskStorage({
@@ -43,12 +43,15 @@ export class UsersController {
 
   @Post(':id/avatar')
   @UseInterceptors(FileInterceptor('file', storage))
-  uploadFile(@Param('id') id: string, @UploadedFile() file) {
+  uploadFile(
+    @Param('id') id: string,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
     return this.userService.uploadAvatar(id, { file: file.filename });
   }
 
   @Get(':id/avatar')
-  findUserAvatar(@Param('id') id, @Res() res) {
+  findUserAvatar(@Param('id') id, @Res() res: Response) {
     return of(this.userService.getAvatar(id, res));
   }
 }
