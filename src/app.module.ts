@@ -6,6 +6,9 @@ import { AuthModule } from './auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
+import { ArticlesModule } from './articles/articles.module';
+import { CommentsModule } from './comments/comments.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
@@ -19,6 +22,9 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
       }),
     }),
     EventEmitterModule.forRoot(),
+    ArticlesModule,
+    CommentsModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
