@@ -1,10 +1,8 @@
 import { Controller, Post, UseGuards, Get, Body, Req } from '@nestjs/common';
 import { Request } from 'express';
 import { AuthService } from 'src/auth/auth.service';
-import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
-import { LocalAuthGuard } from './auth/guards/local-auth.guard';
-import { Public } from './common/decorators/public.decorator';
-import { Roles } from './common/decorators/roles.decorator';
+import { LocalAuthGuard, JwtAuthGuard } from './auth/guards';
+import { Public, Roles } from './common/decorators';
 import { Role } from './common/enums/role.enum';
 import { CreateUserDto } from './users/dto/create-user.dto';
 
