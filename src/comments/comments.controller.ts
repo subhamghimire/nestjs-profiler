@@ -13,6 +13,7 @@ import { CommentsService } from '@/comments/comments.service';
 import { CreateCommentDto } from '@/comments/dto/create-comment.dto';
 import { UpdateCommentDto } from '@/comments/dto/update-comment.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { IComment } from './interfaces/comment.interface';
 
 @ApiTags('comments')
 @Controller('comments')
@@ -46,12 +47,16 @@ export class CommentsController {
 
   @Post(':id')
   @ApiOperation({ summary: 'Give comment to an article' })
-  addComment(
+  async addComment(
     @Param('id') articleId: string,
     @Body() CreateCommentDto: CreateCommentDto,
     @Req() req: Request,
-  ) {
+  ): Promise<IComment> {
     const userId = req.user['_id'];
-    return this.commentsService.addComment(articleId, CreateCommentDto, userId);
+    return await this.commentsService.addComment(
+      articleId,
+      CreateCommentDto,
+      userId,
+    );
   }
 }

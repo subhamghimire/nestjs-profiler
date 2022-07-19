@@ -5,6 +5,7 @@ import { ArticlesService } from '@/articles/articles.service';
 import { CreateCommentDto } from '@/comments/dto/create-comment.dto';
 import { UpdateCommentDto } from '@/comments/dto/update-comment.dto';
 import { Comment } from '@/comments/entities/comment.entity';
+import { IArticle } from '@/articles/interfaces/article.interface';
 
 @Injectable()
 export class CommentsService {

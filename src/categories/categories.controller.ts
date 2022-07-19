@@ -13,6 +13,7 @@ import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from '@/categories/dto/create-category.dto';
 import { UpdateCategoryDto } from '@/categories/dto/update-category.dto';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ICategory } from './interfaces/category.interface';
 
 @ApiTags('categories')
 @Controller('categories')
@@ -21,7 +22,10 @@ export class CategoriesController {
 
   @Post()
   @ApiOperation({ summary: 'Create category' })
-  create(@Req() req: Request, @Body() createCategoryDto: CreateCategoryDto) {
+  create(
+    @Req() req: Request,
+    @Body() createCategoryDto: CreateCategoryDto,
+  ): Promise<ICategory> {
     const userId = req.user['_id'];
     return this.categoriesService.create(createCategoryDto, userId);
   }

@@ -18,6 +18,7 @@ import { Request } from 'express';
 import { ArticlesService } from './articles.service';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
+import { IArticle } from './interfaces/article.interface';
 
 @ApiTags('articles')
 @Controller('articles')
@@ -31,7 +32,7 @@ export class ArticlesController {
     name: 'Bearer',
     description: 'the token we need for auth.',
   })
-  create(@Body() createArticleDto: CreateArticleDto) {
+  create(@Body() createArticleDto: CreateArticleDto): Promise<IArticle> {
     return this.articlesService.create(createArticleDto);
   }
 

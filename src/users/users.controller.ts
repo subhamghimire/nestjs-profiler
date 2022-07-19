@@ -19,6 +19,7 @@ import path = require('path');
 import { Observable, of } from 'rxjs';
 import { Request, Response } from 'express';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { IUser } from './interfaces/user.interface';
 
 export const storage = {
   storage: diskStorage({
@@ -41,8 +42,11 @@ export class UsersController {
 
   @Patch(':id')
   @ApiOperation({ summary: 'Update user data' })
-  update(@Param('id') id: string, @Body() updateUser: UpdateUserDto) {
-    return this.userService.update(id, updateUser);
+  async update(
+    @Param('id') id: string,
+    @Body() updateUser: UpdateUserDto,
+  ): Promise<IUser> {
+    return await this.userService.update(id, updateUser);
   }
 
   @Post(':id/avatar')
@@ -51,7 +55,7 @@ export class UsersController {
   uploadFile(
     @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File,
-  ) {
+  ): Promise<IUser> {
     return this.userService.uploadAvatar(id, { file: file.filename });
   }
 
