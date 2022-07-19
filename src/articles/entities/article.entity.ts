@@ -47,7 +47,7 @@ export class Article extends mongoose.Document {
   category: string;
 
   @Prop([{ type: mongoose.Types.ObjectId, ref: 'Comment' }])
-  comments: Comment[];
+  comments: string[];
 }
 
 const ArticleSchema = SchemaFactory.createForClass(Article);

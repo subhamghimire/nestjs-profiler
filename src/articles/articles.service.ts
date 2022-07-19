@@ -36,7 +36,9 @@ export class ArticlesService {
   async addComment(article: Article, commentId: string) {
     const commented = await this.articleModel.findByIdAndUpdate(
       article._id,
-      { comments: commentId },
+      {
+        $push: { comments: commentId },
+      },
       { new: true, useFindAndModify: false },
     );
     if (!commented) {
