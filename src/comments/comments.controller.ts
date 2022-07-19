@@ -12,7 +12,9 @@ import { Request } from 'express';
 import { CommentsService } from '@/comments/comments.service';
 import { CreateCommentDto } from '@/comments/dto/create-comment.dto';
 import { UpdateCommentDto } from '@/comments/dto/update-comment.dto';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
+@ApiTags('comments')
 @Controller('comments')
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
@@ -43,6 +45,7 @@ export class CommentsController {
   }
 
   @Post(':id')
+  @ApiOperation({ summary: 'Give comment to an article' })
   addComment(
     @Param('id') articleId: string,
     @Body() CreateCommentDto: CreateCommentDto,

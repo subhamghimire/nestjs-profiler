@@ -18,6 +18,7 @@ import { v4 as uuidv4 } from 'uuid';
 import path = require('path');
 import { Observable, of } from 'rxjs';
 import { Request, Response } from 'express';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 
 export const storage = {
   storage: diskStorage({
@@ -32,17 +33,21 @@ export const storage = {
     },
   }),
 };
+
+@ApiTags('users')
 @Controller('users')
 export class UsersController {
   constructor(private readonly userService: UsersService) {}
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Update user data' })
   update(@Param('id') id: string, @Body() updateUser: UpdateUserDto) {
     return this.userService.update(id, updateUser);
   }
 
   @Post(':id/avatar')
   @UseInterceptors(FileInterceptor('file', storage))
+  @ApiOperation({ summary: 'Upload user avatar' })
   uploadFile(
     @Param('id') id: string,
     @UploadedFile() file: Express.Multer.File,
@@ -51,6 +56,7 @@ export class UsersController {
   }
 
   @Get(':id/avatar')
+  @ApiOperation({ summary: 'Get user avatar' })
   findUserAvatar(@Param('id') id, @Res() res: Response) {
     return of(this.userService.getAvatar(id, res));
   }
