@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import * as mongoose from 'mongoose';
 import { NextFunction } from 'express';
-import { Comment } from 'src/comments/entities/comment.entity';
+import { Comment } from '@/comments/entities/comment.entity';
 
 @Schema({ timestamps: true })
 export class Article extends mongoose.Document {

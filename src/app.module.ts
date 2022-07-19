@@ -1,14 +1,14 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UsersModule } from './users/users.module';
-import { AuthModule } from './auth/auth.module';
+import { AppController } from '@/app.controller';
+import { AppService } from '@/app.service';
+import { UsersModule } from '@/users/users.module';
+import { AuthModule } from '@/auth/auth.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { EventEmitterModule } from '@nestjs/event-emitter';
-import { ArticlesModule } from './articles/articles.module';
-import { CommentsModule } from './comments/comments.module';
-import { CategoriesModule } from './categories/categories.module';
+import { ArticlesModule } from '@/articles/articles.module';
+import { CommentsModule } from '@/comments/comments.module';
+import { CategoriesModule } from '@/categories/categories.module';
 
 @Module({
   imports: [

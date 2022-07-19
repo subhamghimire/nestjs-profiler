@@ -4,9 +4,9 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Request } from 'express';
 import { CreateArticleDto } from './dto/create-article.dto';
 import { UpdateArticleDto } from './dto/update-article.dto';
-import { Article } from './entities/article.entity';
+import { Article } from '@/articles/entities/article.entity';
 import { Model } from 'mongoose';
-import { CategoriesService } from 'src/categories/categories.service';
+import { CategoriesService } from '@/categories/categories.service';
 
 @Injectable({ scope: Scope.REQUEST })
 export class ArticlesService {

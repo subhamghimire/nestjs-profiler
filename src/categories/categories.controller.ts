@@ -10,8 +10,8 @@ import {
 } from '@nestjs/common';
 import { Request } from 'express';
 import { CategoriesService } from './categories.service';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
+import { CreateCategoryDto } from '@/categories/dto/create-category.dto';
+import { UpdateCategoryDto } from '@/categories/dto/update-category.dto';
 
 @Controller('categories')
 export class CategoriesController {

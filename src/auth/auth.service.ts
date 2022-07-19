@@ -1,14 +1,12 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Request } from 'express';
-import { CreateUserDto } from 'src/users/dto/create-user.dto';
-import { User } from 'src/users/entities/user.entity';
-import { UsersService } from 'src/users/users.service';
+import { CreateUserDto } from '@/users/dto/create-user.dto';
+import { User } from '@/users/entities/user.entity';
+import { UsersService } from '@/users/users.service';
 import { jwtConstants } from './constants';
-import * as bcrypt from 'bcrypt';
 import { EventEmitter2 } from '@nestjs/event-emitter';
-import { UserCreatedEvent } from 'src/users/events/user-created.event';
-import { create } from 'domain';
+import { UserCreatedEvent } from '@/users/events/user-created.event';
 
 @Injectable()
 export class AuthService {

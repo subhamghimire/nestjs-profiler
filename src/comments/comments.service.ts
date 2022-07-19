@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { ArticlesService } from 'src/articles/articles.service';
-import { CreateCommentDto } from './dto/create-comment.dto';
-import { UpdateCommentDto } from './dto/update-comment.dto';
-import { Comment } from './entities/comment.entity';
+import { ArticlesService } from '@/articles/articles.service';
+import { CreateCommentDto } from '@/comments/dto/create-comment.dto';
+import { UpdateCommentDto } from '@/comments/dto/update-comment.dto';
+import { Comment } from '@/comments/entities/comment.entity';
 
 @Injectable()
 export class CommentsService {

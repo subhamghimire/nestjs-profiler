@@ -1,10 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model, ObjectId } from 'mongoose';
-import { CreateCategoryDto } from './dto/create-category.dto';
-import { UpdateCategoryDto } from './dto/update-category.dto';
-import { Category } from './entities/category.entity';
-import * as mongoose from 'mongoose';
+import { Model } from 'mongoose';
+import { CreateCategoryDto } from '@/categories/dto/create-category.dto';
+import { UpdateCategoryDto } from '@/categories/dto/update-category.dto';
+import { Category } from '@/categories/entities/category.entity';
 
 @Injectable()
 export class CategoriesService {
