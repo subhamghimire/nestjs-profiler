@@ -14,18 +14,18 @@ async function bootstrap() {
       },
     }),
   );
+  app.setGlobalPrefix('api');
 
   const options = new DocumentBuilder()
     .setTitle('Blogging App Backend')
     .setDescription('API related to Blogging')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, options);
   SwaggerModule.setup('api', app, document);
 
   const PORT = process.env.PORT || 3002;
-
-  app.setGlobalPrefix('api');
 
   await app.listen(PORT, () => {
     console.log(`Server is up at ${PORT}`);

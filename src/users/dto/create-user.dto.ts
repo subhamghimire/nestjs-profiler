@@ -7,11 +7,14 @@ import {
   MinLength,
 } from 'class-validator';
 export class CreateUserDto {
-  @ApiProperty({ description: 'User name' })
+  @ApiProperty({ description: 'User name', example: 'John Doe' })
   @IsString()
   readonly name: string;
 
-  @ApiProperty({ description: 'User email address' })
+  @ApiProperty({
+    description: 'User email address',
+    example: 'johny@gmail.com',
+  })
   @IsEmail()
   readonly email: string;
 

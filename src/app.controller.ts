@@ -5,7 +5,12 @@ import { LocalAuthGuard, JwtAuthGuard } from '@/auth/guards';
 import { Public, Roles } from '@/common/decorators';
 import { Role } from '@/common/enums/role.enum';
 import { CreateUserDto } from '@/users/dto/create-user.dto';
-import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import {
+  ApiBearerAuth,
+  ApiOperation,
+  ApiQuery,
+  ApiTags,
+} from '@nestjs/swagger';
 
 @ApiTags('app')
 @Controller()
@@ -21,8 +26,9 @@ export class AppController {
 
   @Public()
   @UseGuards(LocalAuthGuard)
-  @ApiOperation({ summary: 'User login up' })
   @Post('auth/login')
+  @ApiOperation({ summary: 'User login up' })
+  @ApiQuery({ name: 'role', enum: Role })
   async login(@Req() req: Request) {
     return this.authService.login(req.user);
   }
