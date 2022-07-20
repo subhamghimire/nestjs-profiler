@@ -20,11 +20,11 @@ import { ScheduleModule } from '@nestjs/schedule';
     ScheduleModule.forRoot(),
     MailerModule.forRoot({
       transport: {
-        host: 'smtp.mailtrap.io',
-        port: 2525,
+        host: process.env.MAIL_HOST,
+        port: process.env.MAIL_PORT,
         auth: {
-          user: '71fce84bdef75a',
-          pass: '359f305befd034',
+          user: process.env.MAIL_USERNAME,
+          pass: process.env.MAIL_PASSWORD,
         },
       },
     }),
