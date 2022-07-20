@@ -9,11 +9,25 @@ import { EventEmitterModule } from '@nestjs/event-emitter';
 import { ArticlesModule } from '@/articles/articles.module';
 import { CommentsModule } from '@/comments/comments.module';
 import { CategoriesModule } from '@/categories/categories.module';
+import { EmailModule } from './email/email.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { ScheduleModule } from '@nestjs/schedule';
 
 @Module({
   imports: [
     UsersModule,
     AuthModule,
+    ScheduleModule.forRoot(),
+    MailerModule.forRoot({
+      transport: {
+        host: 'smtp.mailtrap.io',
+        port: 2525,
+        auth: {
+          user: '71fce84bdef75a',
+          pass: '359f305befd034',
+        },
+      },
+    }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule.forRoot()],
       inject: [ConfigService],
@@ -25,6 +39,7 @@ import { CategoriesModule } from '@/categories/categories.module';
     ArticlesModule,
     CommentsModule,
     CategoriesModule,
+    EmailModule,
   ],
   controllers: [AppController],
   providers: [AppService],
