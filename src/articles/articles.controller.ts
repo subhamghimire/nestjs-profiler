@@ -27,9 +27,9 @@ export class ArticlesController {
 
   @Post()
   @ApiOperation({ summary: 'Create article' })
-  @ApiBearerAuth()
+  @ApiBearerAuth('defaultBearerAuth')
   @ApiHeader({
-    name: 'Bearer',
+    name: 'Authorization',
     description: 'the token we need for auth.',
   })
   create(@Body() createArticleDto: CreateArticleDto): Promise<IArticle> {
